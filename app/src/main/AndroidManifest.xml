@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".com.functions.Booking.Booking">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,7 @@
         <activity android:name=".com.functions.signUp.SignupActivity" />
         <activity android:name=".com.functions.signUp.ResetPasswordActivity" />
         <activity android:name=".com.functions.UserProfile.UserProfileActivity" />
-        <activity android:name=".com.functions.Booking.Booking" />
+        <!--<activity android:name=".com.functions.Booking.Booking" />-->
         <activity android:name=".com.functions.Admin.AdminPanel" />
         <activity
             android:name=".com.functions.Home.HomePage"

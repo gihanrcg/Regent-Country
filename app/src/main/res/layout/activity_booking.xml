@@ -15,6 +15,7 @@
         android:padding="@dimen/activity_horizontal_margin">
 
 
+
         <ImageView
             android:layout_width="@dimen/logo_w_h"
             android:layout_height="@dimen/logo_w_h"
@@ -22,20 +23,13 @@
             android:layout_marginBottom="30dp"
             android:src="@mipmap/ic_launcher" />
 
-        <TextView
+        <Spinner
+            android:id="@+id/spinner1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
             android:layout_marginBottom="10dp"
-            android:text="@string/roomType"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <Spinner
-            android:id="@+id/planets_spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"    />
-
+            android:spinnerMode="dropdown"/>
 
         <EditText
             android:id="@+id/noOfRooms"
