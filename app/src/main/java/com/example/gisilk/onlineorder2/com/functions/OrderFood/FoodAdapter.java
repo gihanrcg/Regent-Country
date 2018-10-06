@@ -3,6 +3,7 @@ package com.example.gisilk.onlineorder2.com.functions.OrderFood;
 import android.content.Context;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.gisilk.onlineorder2.R;
 
 
@@ -54,11 +56,15 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
 
         Food food = foodList.get(position);
         holder.title.setText(food.getName());
-        holder.count.setText(food.getSize());
+        holder.count.setText(food.getSize());;
 
         // loading album cover using Glide library
-        //  Glide.with(mContext).load(liquor.getThumbnail()).into(holder.thumbnail);
-
+        try {
+            Glide.with(mContext).load(food.getThumbnail()).into(holder.thumbnail);
+        }catch (Exception e){
+            Log.i("Error",e.getMessage());
+            e.printStackTrace();
+        }
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

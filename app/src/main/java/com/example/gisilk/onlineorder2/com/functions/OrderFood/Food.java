@@ -8,12 +8,21 @@ public class Food {
     private String size;
     private int price;
     private boolean availability;
+    private int thumbnail;
+    public Food(){
+    }
 
-    public Food(String name, String size, int price, boolean availability) {
+    public int getThumbnail() {
+        return thumbnail;
+    }
+
+    public Food(String name, String size, int price, boolean availability, int thumbnail) {
         this.name = name;
         this.size = size;
         this.price = price;
         this.availability = availability;
+        this.thumbnail = thumbnail;
+
     }
 
     public String getName() {

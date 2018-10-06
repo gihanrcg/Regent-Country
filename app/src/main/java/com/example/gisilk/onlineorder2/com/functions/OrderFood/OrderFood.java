@@ -102,50 +102,46 @@ public class OrderFood extends AppCompatActivity {
      * Adding few albums for testing
      */
     private void prepareAlbums() {
-//        int[] covers = new int[]{
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//                R.drawable.liquor_cover,
-//        };
+        final int[] covers = new int[]{
+                R.drawable.noodles_card,
+                R.drawable.noodles_card,
+                R.drawable.noodles_card,
+                R.drawable.noodles_card,
+
+        };
 
 
-//        albumList.clear();
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for(DataSnapshot foodSnapShot : dataSnapshot.getChildren()){
-////                    Log.i("Food","values :" + dataSnapshot.getValue());
-//                    Food foodDetails = foodSnapShot.getValue(Food.class);
+        albumList.clear();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot foodSnapShot : dataSnapshot.getChildren()){
+                    Log.i("food","values :" + foodSnapShot.getValue());
+                    Food foodDetails = foodSnapShot.getValue(Food.class);
 //                    Food foodDetailsWithDescription = new Food(foodDetails.getName(), foodDetails.getSize(), foodDetails.getPrice(), foodDetails.isAvailability());
-////                    albumList.add(foodDetailsWithDescription);
-//                    Log.i("food","FoodDetails.getName() :" + foodDetails.getName());
-//                    Food a = new Food(foodDetails.getName(), foodDetails.getSize(), foodDetails.getPrice(),foodDetails.isAvailability());
-//                    albumList.add(a);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//
-//
-        for(int i = 0; i < 7;i++ ){
+//                    albumList.add(foodDetailsWithDescription);
+                    Log.i("food","FoodDetails.getName() :" + foodDetails.getName());
+                    Log.i("food","FoodDetails.getSize() :" + foodDetails.getSize());
+                    Log.i("food","FoodDetails.getPrice() :" + foodDetails.getPrice());
+                    Log.i("food","FoodDetails.isAvailability() :" + foodDetails.isAvailability());
+                    Food a = new Food(foodDetails.getName(), foodDetails.getSize(), foodDetails.getPrice(),foodDetails.isAvailability(),covers[1]);
+                    albumList.add(a);
+                }
+            }
 
-            Food a = new Food("Noodles", "Test" + i * 1000, 100,true);
-            albumList.add(a);
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        }
+            }
+        });
+
+//
+//        for(int i = 0; i < 7;i++ ){
+//
+//            Food a = new Food("Noodles", "Test" + i * 1000, 100,true);
+//            albumList.add(a);
+//
+//        }
 
 //
 //        Liquor a = new Liquor("Jack Daniel", "Test", 100,true);

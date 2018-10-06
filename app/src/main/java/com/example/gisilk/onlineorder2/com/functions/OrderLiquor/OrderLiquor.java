@@ -58,6 +58,7 @@ public class OrderLiquor extends AppCompatActivity {
         prepareAlbums();
 
         try {
+
             Glide.with(this).load(R.drawable.liquor_cover).into((ImageView) findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,7 +124,7 @@ public class OrderLiquor extends AppCompatActivity {
                 for(DataSnapshot liquorSnapshot : dataSnapshot.getChildren()){
 //                    Log.i("liquor","values :" + dataSnapshot.getValue());
                     Liquor liquorDetails = liquorSnapshot.getValue(Liquor.class);
-                    Liquor liquorDetailsWithDescription = new Liquor(liquorDetails.getName(), liquorDetails.getSize(), liquorDetails.getPrice(), liquorDetails.isAvailability());
+//                    Liquor liquorDetailsWithDescription = new Liquor(liquorDetails.getName(), liquorDetails.getSize(), liquorDetails.getPrice(), liquorDetails.isAvailability());
 //                    albumList.add(liquorDetailsWithDescription);
                     Log.i("liquor","liquorDetails.getName() :" + liquorDetails.getName());
                     Liquor a = new Liquor(liquorDetails.getName(), liquorDetails.getSize(), liquorDetails.getPrice(),liquorDetails.isAvailability());
