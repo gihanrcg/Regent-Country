@@ -63,8 +63,11 @@
     <string name="title_section3">Section 3</string>
     <string name="OrderNow">Order now</string>
 
+    <string name="backdrop_title_food">Order your favourite foods</string>
+
     <string name="backdrop_title">Liquor Name</string>
     <string name="backdrop_subtitle">Liquor Details</string>
+    <string name="backdrop_subtitle_food">Food Details</string>
 
 
     <string name="action_example">Example action</string>

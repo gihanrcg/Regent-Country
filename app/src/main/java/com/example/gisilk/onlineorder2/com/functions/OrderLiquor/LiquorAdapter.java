@@ -18,9 +18,7 @@ import com.example.gisilk.onlineorder2.R;
 
 import java.util.List;
 
-/**
- * Created by Ravi Tamada on 18/05/16.
- */
+
 public class LiquorAdapter extends RecyclerView.Adapter<LiquorAdapter.MyViewHolder> {
 
     private Context mContext;
