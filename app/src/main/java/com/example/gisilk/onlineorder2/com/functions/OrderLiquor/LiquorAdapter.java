@@ -60,7 +60,7 @@ public class LiquorAdapter extends RecyclerView.Adapter<LiquorAdapter.MyViewHold
         holder.count.setText(liquor.getSize());
 
         // loading album cover using Glide library
-        Glide.with(mContext).load(liquor.getThumbnail()).into(holder.thumbnail);
+      //  Glide.with(mContext).load(liquor.getThumbnail()).into(holder.thumbnail);
 
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override

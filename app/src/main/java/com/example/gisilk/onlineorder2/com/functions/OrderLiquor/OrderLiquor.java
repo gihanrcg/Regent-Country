@@ -3,6 +3,7 @@ package com.example.gisilk.onlineorder2.com.functions.OrderLiquor;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +11,18 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.gisilk.onlineorder2.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +32,8 @@ public class OrderLiquor extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LiquorAdapter adapter;
     private List<Liquor> albumList;
+
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +45,7 @@ public class OrderLiquor extends AppCompatActivity {
         initCollapsingToolbar();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
+        databaseReference = FirebaseDatabase.getInstance().getReference("Hotel/Liquor");
         albumList = new ArrayList<>();
         adapter = new LiquorAdapter(this, albumList);
 
@@ -91,27 +100,50 @@ public class OrderLiquor extends AppCompatActivity {
      * Adding few albums for testing
      */
     private void prepareAlbums() {
-        int[] covers = new int[]{
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-                R.drawable.liquor_cover,
-        };
+//        int[] covers = new int[]{
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//                R.drawable.liquor_cover,
+//        };
 
-        for(int i = 0; i < 7;i++ ){
 
-            Liquor a = new Liquor("Jack Daniel", "Test" + i * 1000, 100,true);
-            albumList.add(a);
+        albumList.clear();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot liquorSnapshot : dataSnapshot.getChildren()){
+//                    Log.i("liquor","values :" + dataSnapshot.getValue());
+                    Liquor liquorDetails = liquorSnapshot.getValue(Liquor.class);
+                    Liquor liquorDetailsWithDescription = new Liquor(liquorDetails.getName(), liquorDetails.getSize(), liquorDetails.getPrice(), liquorDetails.isAvailability());
+//                    albumList.add(liquorDetailsWithDescription);
+                    Log.i("liquor","liquorDetails.getName() :" + liquorDetails.getName());
+                    Liquor a = new Liquor(liquorDetails.getName(), liquorDetails.getSize(), liquorDetails.getPrice(),liquorDetails.isAvailability());
+                    albumList.add(a);
+                }
+            }
 
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+//
+//
+//        for(int i = 0; i < 7;i++ ){
+//
+//            Liquor a = new Liquor("Jack Daniel", "Test" + i * 1000, 100,true);
+//            albumList.add(a);
+//
+//        }
 
 //
 //        Liquor a = new Liquor("Jack Daniel", "Test", 100,true);

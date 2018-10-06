@@ -4,22 +4,22 @@ public class Liquor {
 
     private String name;
     private String size;
-    private float price;
+    private int price;
     private boolean availability;
-    private int thumbnail;
+    //private int thumbnail;
 
-    public void setThumbnail(int thumbnail) {
-        this.thumbnail = thumbnail;
-    }
+//    public void setThumbnail(int thumbnail) {
+//        this.thumbnail = thumbnail;
+//    }
 
-    public int getThumbnail() {
-        return thumbnail;
-    }
+    //public int getThumbnail() {
+     //   return thumbnail;
+  //  }
 
     public Liquor() {
     }
 
-    public Liquor(String name, String size, float price, boolean availability) {
+    public Liquor(String name, String size, int price, boolean availability) {
         this.name = name;
         this.size = size;
         this.price = price;
@@ -43,11 +43,11 @@ public class Liquor {
         this.size = size;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
