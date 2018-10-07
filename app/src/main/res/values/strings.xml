@@ -69,6 +69,12 @@
     <string name="backdrop_subtitle">Liquor Details</string>
     <string name="backdrop_subtitle_food">Food Details</string>
 
+    <string name="btn_room_management">Room Managemnt</string>
+    <string name="btn_food_managemnt">Food Management</string>
+    <string name="btn_liquor_managemnt">Liquor Management</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+
 
     <string name="action_example">Example action</string>
 </resources>
