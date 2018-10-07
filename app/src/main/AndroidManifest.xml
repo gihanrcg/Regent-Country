@@ -3,6 +3,7 @@
     package="com.example.gisilk.onlineorder2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,23 +16,21 @@
         <activity android:name=".com.functions.signUp.ResetPasswordActivity" />
         <activity android:name=".com.functions.UserProfile.UserProfileActivity" />
         <activity android:name=".com.functions.Booking.Booking" />
-        <activity android:name=".com.functions.Admin.AdminPanel" >
-
-        </activity>
+        <activity android:name=".com.functions.Admin.AdminPanel"></activity>
         <activity
             android:name=".com.functions.Home.HomePage"
             android:label="@string/title_activity_home_page"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".com.functions.OrderLiquor.OrderLiquor"></activity>
-        <activity android:name=".com.functions.OrderFood.OrderFood">
-
-        </activity>
+        <activity android:name=".com.functions.OrderLiquor.OrderLiquor" />
+        <activity android:name=".com.functions.OrderFood.OrderFood"></activity>
         <activity android:name=".com.functions.Admin.LiquorManagement">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".com.functions.Admin.FoodManagement"></activity>
     </application>
 
 </manifest>

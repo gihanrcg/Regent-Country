@@ -1,25 +1,28 @@
 package com.example.gisilk.onlineorder2.com.functions.Admin;
 
-import android.app.Instrumentation;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceManager.OnActivityResultListener;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.gisilk.onlineorder2.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-import java.util.BitSet;
+import java.util.UUID;
 
 public class LiquorManagement extends AppCompatActivity {
 
@@ -28,12 +31,13 @@ public class LiquorManagement extends AppCompatActivity {
     ImageView liquorImage;
     Button btnUpload;
     private StorageReference mStorageref;
+    private Uri filepath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liquor_management);
-
+        btnUpload = findViewById(R.id.btn_submit);
         mStorageref = FirebaseStorage.getInstance().getReference();
 
         liquorImage = (ImageView) findViewById(R.id.uploadImageView);
@@ -51,6 +55,42 @@ public class LiquorManagement extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(up,"Select image"),REQUEST_CODE);
             }
         });
+
+        btnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    if(filepath !=  null){
+                        final ProgressDialog progressDialog = new ProgressDialog(LiquorManagement.this);
+                        progressDialog.setTitle("Uploading...");
+                        progressDialog.show();
+
+
+                        StorageReference sref = mStorageref.child("images/"+UUID.randomUUID().toString());
+                        sref.putFile(filepath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                progressDialog.dismiss();
+                                Toast.makeText(LiquorManagement.this,"Done",Toast.LENGTH_SHORT);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progressDialog.dismiss();
+                                e.printStackTrace();
+                                Toast.makeText(LiquorManagement.this,"Failed",Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = taskSnapshot.getBytesTransferred() /taskSnapshot.getTotalByteCount() * 100;
+                                progressDialog.setMessage("Uploading "+(int)progress + "%" );
+                            }
+                        });
+                    }
+
+            }
+        });
     }
 
     @Override
@@ -59,12 +99,12 @@ public class LiquorManagement extends AppCompatActivity {
 
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null ) {
             try {
-                Uri uri = data.getData();
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                filepath = data.getData();
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filepath);
                 liquorImage.setImageBitmap(bitmap);
 
 
-                StorageReference uploadImageRef = mStorageref.child(data.getData().toString());
+
 
                 Toast.makeText(LiquorManagement.this,"Selection Done",Toast.LENGTH_SHORT);
             } catch (Exception e) {
