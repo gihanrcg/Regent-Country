@@ -24,13 +24,15 @@
         <activity android:name=".com.functions.OrderLiquor.OrderLiquor" />
         <activity android:name=".com.functions.OrderFood.OrderFood"></activity>
         <activity android:name=".com.functions.Admin.LiquorManagement">
+
+        </activity>
+        <activity android:name=".com.functions.Admin.FoodManagement">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".com.functions.Admin.FoodManagement"></activity>
     </application>
 
 </manifest>
