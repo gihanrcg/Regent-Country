@@ -24,7 +24,7 @@ public class AdminPanel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(AdminPanel.this,AddLiquor.class);
+                Intent i = new Intent(AdminPanel.this,ManageLiquor.class);
                 startActivity(i);
 
             }

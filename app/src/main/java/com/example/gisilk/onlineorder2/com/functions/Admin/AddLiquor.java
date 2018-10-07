@@ -35,7 +35,7 @@ public class AddLiquor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_liquor_management);
+        setContentView(R.layout.activity_add_liquor);
         btnUpload = findViewById(R.id.btn_submit);
         mStorageref = FirebaseStorage.getInstance().getReference();
 

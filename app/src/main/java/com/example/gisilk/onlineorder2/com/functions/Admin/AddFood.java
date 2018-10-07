@@ -37,7 +37,7 @@ public class AddFood extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_management);
+        setContentView(R.layout.activity_add_food);
 
         btnUpload = findViewById(R.id.btn_submit);
         mStorageref = FirebaseStorage.getInstance().getReference();
