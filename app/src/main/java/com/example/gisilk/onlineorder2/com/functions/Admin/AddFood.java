@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.gisilk.onlineorder2.R;
-import com.example.gisilk.onlineorder2.com.functions.OrderFood.Food;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -25,7 +24,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
-public class FoodManagement extends AppCompatActivity {
+public class AddFood extends AppCompatActivity {
 
     private int REQUEST_CODE = 1;
     private static final int Galley_Intent = 2;
@@ -64,7 +63,7 @@ public class FoodManagement extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(filepath !=  null){
-                    final ProgressDialog progressDialog = new ProgressDialog(FoodManagement.this);
+                    final ProgressDialog progressDialog = new ProgressDialog(AddFood.this);
                     progressDialog.setTitle("Uploading...");
                     progressDialog.show();
 
@@ -74,14 +73,14 @@ public class FoodManagement extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                             progressDialog.dismiss();
-                            Toast.makeText(FoodManagement.this,"Done",Toast.LENGTH_SHORT);
+                            Toast.makeText(AddFood.this,"Done",Toast.LENGTH_SHORT);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
                             e.printStackTrace();
-                            Toast.makeText(FoodManagement.this,"Failed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddFood.this,"Failed",Toast.LENGTH_SHORT).show();
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -109,12 +108,12 @@ public class FoodManagement extends AppCompatActivity {
 
 
 
-                Toast.makeText(FoodManagement.this,"Selection Done",Toast.LENGTH_SHORT);
+                Toast.makeText(AddFood.this,"Selection Done",Toast.LENGTH_SHORT);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }else{
-            Toast.makeText(FoodManagement.this,"Selection Cancelled",Toast.LENGTH_SHORT);
+            Toast.makeText(AddFood.this,"Selection Cancelled",Toast.LENGTH_SHORT);
         }
 
     }

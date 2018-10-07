@@ -23,10 +23,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".com.functions.OrderLiquor.OrderLiquor" />
         <activity android:name=".com.functions.OrderFood.OrderFood"></activity>
-        <activity android:name=".com.functions.Admin.LiquorManagement">
+        <activity android:name=".com.functions.Admin.AddLiquor">
 
         </activity>
-        <activity android:name=".com.functions.Admin.FoodManagement">
+        <activity android:name=".com.functions.Admin.AddFood">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

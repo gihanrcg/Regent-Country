@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.example.gisilk.onlineorder2.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -24,7 +23,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
-public class LiquorManagement extends AppCompatActivity {
+public class AddLiquor extends AppCompatActivity {
 
     private int REQUEST_CODE = 1;
     private static final int Galley_Intent = 2;
@@ -61,7 +60,7 @@ public class LiquorManagement extends AppCompatActivity {
             public void onClick(View view) {
 
                     if(filepath !=  null){
-                        final ProgressDialog progressDialog = new ProgressDialog(LiquorManagement.this);
+                        final ProgressDialog progressDialog = new ProgressDialog(AddLiquor.this);
                         progressDialog.setTitle("Uploading...");
                         progressDialog.show();
 
@@ -71,14 +70,14 @@ public class LiquorManagement extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                                 progressDialog.dismiss();
-                                Toast.makeText(LiquorManagement.this,"Done",Toast.LENGTH_SHORT);
+                                Toast.makeText(AddLiquor.this,"Done",Toast.LENGTH_SHORT);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 progressDialog.dismiss();
                                 e.printStackTrace();
-                                Toast.makeText(LiquorManagement.this,"Failed",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddLiquor.this,"Failed",Toast.LENGTH_SHORT).show();
                             }
                         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                             @Override
@@ -106,12 +105,12 @@ public class LiquorManagement extends AppCompatActivity {
 
 
 
-                Toast.makeText(LiquorManagement.this,"Selection Done",Toast.LENGTH_SHORT);
+                Toast.makeText(AddLiquor.this,"Selection Done",Toast.LENGTH_SHORT);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }else{
-            Toast.makeText(LiquorManagement.this,"Selection Cancelled",Toast.LENGTH_SHORT);
+            Toast.makeText(AddLiquor.this,"Selection Cancelled",Toast.LENGTH_SHORT);
         }
 
     }
